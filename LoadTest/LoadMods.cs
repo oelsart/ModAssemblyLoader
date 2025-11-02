@@ -1,4 +1,5 @@
-﻿using ModAssemblyLoader;
+﻿#if LOADTEST
+using ModAssemblyLoader;
 
 namespace LoadTest;
 
@@ -30,3 +31,4 @@ public abstract class LoadMods
         }
     }
 }
+#endif

@@ -13,7 +13,7 @@ public class AssemblyLoader(string version, string workshopPath, string localMod
     
     private const string CommonFolderName = "Common";
     
-    public void LoadModFolder(string folderName)
+    public List<Assembly> LoadModFolder(string folderName)
     {
         var rootFolder = TryLoadFolder(Path.Combine(workshopPath, folderName));
         if (rootFolder is null && localModsPath != null)
@@ -46,6 +46,7 @@ public class AssemblyLoader(string version, string workshopPath, string localMod
                 folders.Add(CommonFolderName);
         }
         
+        var loadedAssemblies = new List<Assembly>();
         foreach (var name in folders)
         {
             var fullPath = rootFolder.FullName;
@@ -61,7 +62,7 @@ public class AssemblyLoader(string version, string workshopPath, string localMod
             {
                 try
                 {
-                    Assembly.LoadFrom(fileInfo.FullName);
+                    loadedAssemblies.Add(Assembly.LoadFrom(fileInfo.FullName));
                 }
                 catch
                 {
@@ -69,7 +70,7 @@ public class AssemblyLoader(string version, string workshopPath, string localMod
                 }
             }
         }
-        return;
+        return loadedAssemblies;
 
         static DirectoryInfo TryLoadFolder(string path) => Directory.Exists(path) ? new DirectoryInfo(path) : null;
         

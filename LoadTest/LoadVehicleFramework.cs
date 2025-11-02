@@ -1,4 +1,5 @@
-﻿namespace LoadTest;
+﻿#if LOADTEST
+namespace LoadTest;
 
 public class LoadVehicleFramework : LoadMods
 {
@@ -6,3 +7,4 @@ public class LoadVehicleFramework : LoadMods
 
     protected override string[] AssemblyNames => ["SmashTools", "UpdateLogTool", "Vehicles"];
 }
+#endif

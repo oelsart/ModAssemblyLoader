@@ -1,4 +1,5 @@
-﻿namespace LoadTest;
+﻿#if LOADTEST
+namespace LoadTest;
 
 public class LoadCE_VF : LoadMods
 {
@@ -8,3 +9,4 @@ public class LoadCE_VF : LoadMods
     protected override string[] AssemblyNames =>
         ["CombatExtended", "VehiclesCompat"];
 }
+#endif

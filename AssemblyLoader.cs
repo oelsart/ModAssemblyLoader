@@ -53,6 +53,7 @@ public class AssemblyLoader(string version, string workshopPath, string localMod
             {
                 fullPath = Path.Combine(fullPath, name);
             }
+            fullPath = Path.Combine(fullPath, AssembliesFolderName);
             var folder = TryLoadFolder(fullPath);
             if (folder is null)
                 continue;

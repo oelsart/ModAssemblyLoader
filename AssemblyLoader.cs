@@ -63,7 +63,7 @@ public class AssemblyLoader(string version, string workshopPath, string localMod
             {
                 try
                 {
-                    loadedAssemblies.Add(Assembly.LoadFrom(fileInfo.FullName));
+                    loadedAssemblies.Add(LoadFromAssemblyPath(fileInfo.FullName));
                 }
                 catch
                 {

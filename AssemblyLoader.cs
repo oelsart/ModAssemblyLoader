@@ -16,6 +16,7 @@ public class AssemblyLoader(string version, string workshopPath, string localMod
     
     public List<Assembly> LoadModFolder(string folderName)
     {
+        ArgumentNullException.ThrowIfNull(folderName);
         var rootFolder = TryLoadFolder(Path.Combine(workshopPath, folderName));
         if (rootFolder is null && localModsPath != null)
         {
@@ -38,7 +39,11 @@ public class AssemblyLoader(string version, string workshopPath, string localMod
                     .Select(folder => Version.TryParse(folder.Name, out var v) ? v : null)
                     .Where(v => v != null)
                     .Max();
-                if (versionLatest.Major > 0)
+                if (versionLatest is null)
+                {
+                    folders.Add("/");
+                }
+                else if (versionLatest.Major > 0)
                 {
                     folders.Add(versionLatest.ToString());
                 }

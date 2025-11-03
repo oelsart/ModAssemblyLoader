@@ -52,7 +52,7 @@ public class AssemblyLoader(string version, string workshopPath, string localMod
         }
         
         var loadedAssemblies = new List<Assembly>();
-        foreach (var name in folders)
+        foreach (var name in folders.OrderBy(name => name is "/" or "\\"))
         {
             var fullPath = rootFolder.FullName;
             if (name != "/" && name != "\\")

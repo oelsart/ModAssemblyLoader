@@ -1,10 +1,9 @@
 ﻿using System.Reflection;
-using System.Runtime.Loader;
 using System.Xml.Linq;
 
 namespace ModAssemblyLoader;
 
-public class AssemblyLoader(string version, string workshopPath, string localModsPath = null) : AssemblyLoadContext(isCollectible: true)
+public class AssemblyLoader(string version, string workshopPath, string localModsPath = null)
 {
     private const string LoadFoldersFileName = "LoadFolders.xml";
     

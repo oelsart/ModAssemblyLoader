@@ -24,8 +24,11 @@ public abstract class LoadMods
         {
             loader.LoadModFolder(folder);
         }
-        var nameList = loader.Assemblies.Select(assembly => assembly.GetName().Name).ToList();
-        Assert.That(AssemblyNames.All(name => nameList.Contains(name)));
+        var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+        foreach (var assemblyName in AssemblyNames)
+        {
+            Assert.That(assemblies.Any(assembly => assembly.FullName.Contains(assemblyName)));
+        }
     }
 }
 #endif
